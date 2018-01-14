@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.6
 
 repositories {
     mavenCentral()
@@ -14,8 +14,6 @@ task(runSimple, dependsOn: 'classes', type: JavaExec) {
     main = 'com.juliapavlenko.logger.AppLogger'
     classpath = sourceSets.main.runtimeClasspath
     args '/Users/julia/src/logs'
-    //systemProperty 'simple.message', 'Hello '
-
 }
 
 defaultTasks 'runSimple'
