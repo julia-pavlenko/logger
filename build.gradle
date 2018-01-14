@@ -1,4 +1,4 @@
-group 'com.juliapavlenko'
+group
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -8,6 +8,16 @@ sourceCompatibility = 1.5
 repositories {
     mavenCentral()
 }
+
+
+task(runSimple, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.juliapavlenko.logger.App'
+    classpath = sourceSets.main.runtimeClasspath
+    args '~/src/logs'
+    //systemProperty 'simple.message', 'Hello '
+}
+
+defaultTasks 'runSimple'
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
