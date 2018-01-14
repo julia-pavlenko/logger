@@ -13,7 +13,7 @@ import java.util.*;
 
 public class AppLogger {
 
-    private static String REPORT_FILE_PATH = "/report.txt";
+    private static String REPORT_FILE_NAME = "report.txt";
     private static String DATE_TIME_FORMAT_LOG_TIME = "EEE, dd MMM yyyy HH:mm:ss z";
     private static String SHORT_DATE_FORMAT = "dd-MM-yyyy";
     private static String LOG_TIME_KEY = "Log time: ";
@@ -196,8 +196,9 @@ public class AppLogger {
     }
 
     private void saveReportToFile(String reportText) {
+        String reportFilePath = logFolder + "/" + REPORT_FILE_NAME;
         try{
-            PrintWriter writer = new PrintWriter(logFolder + REPORT_FILE_PATH, "UTF-8");
+            PrintWriter writer = new PrintWriter(reportFilePath, "UTF-8");
             writer.println(reportText);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -205,6 +206,8 @@ public class AppLogger {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        System.out.println("Report was successfully created:");
+        System.out.println(reportFilePath);
     }
 
     private static class DayLogsData {
