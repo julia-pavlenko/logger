@@ -1,6 +1,7 @@
 package com.juliapavlenko.logger;
 
-import com.sun.deploy.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
