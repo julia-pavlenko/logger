@@ -16,4 +16,4 @@ Note: Logs file should have file name in specific format: transactionsLog_*.txt
 4. Run gradle task
 ./gradlew
 
-5. Check report file 'report.txt' it should appear in '<log folder>/report/report.txt' folder.
+5. Check report file 'report.txt' it should appear in '<log folder>/report.txt'.
