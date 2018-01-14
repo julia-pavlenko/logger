@@ -1,7 +1,5 @@
 package com.juliapavlenko.logger;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -189,14 +187,14 @@ public class AppLogger {
                 int count = reportDataItem.getIdsCount().get(id);
                 idCountList.add(String.format("%s:%d", id, count));
             }
-            String idCountString = StringUtils.join(idCountList, ", ");
+            String idCountString = join(idCountList, ", ");
             reportText.append(idCountString).append("\n\n");
         }
         saveReportToFile(reportText.toString());
     }
 
     private void saveReportToFile(String reportText) {
-        String reportFilePath = logFolder + "/" + REPORT_FILE_NAME;
+        String reportFilePath = logFolder + File.separator + REPORT_FILE_NAME;
         try{
             PrintWriter writer = new PrintWriter(reportFilePath, "UTF-8");
             writer.println(reportText);
@@ -242,5 +240,19 @@ public class AppLogger {
         public void setEndDate(long endDate) {
             this.endDate = endDate;
         }
+    }
+
+    public static String join(List<String> list, String separator) {
+        int len = list.size();
+        if (len == 0)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        for (String item: list) {
+            if (sb.length() > 0) {
+                sb.append(separator);
+            }
+            sb.append(item);
+        }
+        return sb.toString();
     }
 }
