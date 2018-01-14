@@ -11,7 +11,9 @@ cd logger
 3. Update log folder in build.gradle file
 > args '<log folder>/'
 
+Note: Logs file should have file name in specific format: transactionsLog_*.txt
+
 4. Run gradle task
 ./gradlew
 
-5. Check report file 'report.txt' it should appear in '<log folder>/report/' folder.
+5. Check report file 'report.txt' it should appear in '<log folder>/report/report.txt' folder.
