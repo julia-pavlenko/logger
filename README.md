@@ -9,7 +9,8 @@
 ```cd logger```
 
 3. Update log folder in build.gradle file
-> args '<log folder>/'
+
+    args '<log folder>/'
 
 Note:
     - For windows use '\\' instead '\' in path of log folder
