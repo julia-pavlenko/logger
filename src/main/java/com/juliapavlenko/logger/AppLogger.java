@@ -62,21 +62,15 @@ public class AppLogger {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(logFile), "UTF-8"));
             String line;
+            long date = 0;
             DayLogsData dayLogsData = null;
             while ((line = br.readLine()) != null) {
                 String trimmedLine = line.trim();
                 if (trimmedLine.startsWith(LOG_TIME_KEY)) {
                     isReadIdSection = false;
-                    long date = parseDate(trimmedLine);
+                    date = parseDate(trimmedLine);
                     if (date != 0) {
-                        if (dayLogsData != null && !dayLogsData.getIdsCount().isEmpty()) {
-                            DayLogsData storedDateLog = dateLog.get(date);
-                            if (storedDateLog != null) {
-                                mergeDayLogIds(storedDateLog, dayLogsData);
-                            } else {
-                                dateLog.put(date, dayLogsData);
-                            }
-                        }
+                        storeDayLog(dayLogsData, date);
                         dayLogsData = new DayLogsData();
                         dayLogsData.setDate(date);
                         dayLogsData.setIdsCount(new TreeMap<String, Integer>());
@@ -85,9 +79,23 @@ public class AppLogger {
                     processDayLogLine(dayLogsData, trimmedLine);
                 }
             }
+            if (date != 0) {
+                storeDayLog(dayLogsData, date);
+            }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void storeDayLog(DayLogsData dayLogsData, long date) {
+        if (dayLogsData != null && !dayLogsData.getIdsCount().isEmpty()) {
+            DayLogsData storedDateLog = dateLog.get(date);
+            if (storedDateLog != null) {
+                mergeDayLogIds(storedDateLog, dayLogsData);
+            } else {
+                dateLog.put(date, dayLogsData);
+            }
         }
     }
 
