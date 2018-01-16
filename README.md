@@ -13,8 +13,7 @@
     args '<log folder>/'
 
 Note:
-    - For windows use '\\\\' instead '\\' in path of log folder
-    - Logs file should have file name in specific format: transactionsLog_*.txt
+    - For windows use '\\\\' instead '\\' in path of log folder. Logs file should have file name in specific format: transactionsLog_*.txt
 
 
 4. Run gradle task:
